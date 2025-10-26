@@ -10,14 +10,17 @@ class Program
        
             /*Console.WriteLine("1. Ajouter une personne");
             BaseDeDonne.SavePerson(new PersoneModel(Console.ReadLine(), Console.ReadLine(), 0));
-            BaseDeDonne.SavePerson(new PersoneModel("fdasfads", "fdasfads", 0)); 
+            BaseDeDonne.SavePerson(new PersoneModel("fdasfads", "fdasfads", 0)); */
             foreach (var personeModel in BaseDeDonne.LoadPerson())
             {
                 Console.WriteLine(personeModel);
-            }
+            }/*
             BaseDeDonne.DeletePersonne(int.Parse(Console.ReadLine()));*/
             LogscreenClass.PrintLogscreenTempleCenter();
-            LogscreenClass.saisieLogscreenTempleCenter(out string firstName, out string secondName);
+            LogscreenClass.SaisieLogscreenTempleCenter(out string firstName, out string secondName);
+        Console.Clear();
+        LogscreenClass.PrintLogscreenTemplePasswordCenter();
+        LogscreenClass.SaisieLogscreenTemplePasswordCenter(out string password);
 
 
 

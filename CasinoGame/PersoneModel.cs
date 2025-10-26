@@ -1,44 +1,33 @@
 namespace CasinoGame;
 
+// Modèle de données représentant une personne dans le jeu de casino
 public struct PersoneModel
 {
-    // The Id should be a public property, optionally settable if needed later.
-    // Dapper can map this back when retrieving data.
-    public int? Id { get; set; } 
-    
-    // Convert all fields used in the INSERT statement to public properties.
+    // Identifiant unique de la personne (peut être null)
+    public int? Id { get; set; }
+
+    // Prénom de la personne
     public string FirstName { get; set; }
+
+    // Nom de famille de la personne
     public string SecondName { get; set; }
+
+    // Solde du compte de la personne
     public double Balance { get; set; }
 
-    // Constructor (still valid, but now initializes the public properties)
+    // Constructeur pour initialiser une personne avec un prénom, un nom et un solde
     public PersoneModel(string firstName, string secondName, double balance)
     {
-        // For a new record, the database handles the Id, so we can leave it null.
-        // If the struct is part of an object model, you may need to initialize it 
-        // to a default value if not using a parameterless constructor.
-        Id = null; 
+        // L'identifiant est initialisé à null par défaut
+        Id = null;
         FirstName = firstName;
         SecondName = secondName;
         Balance = balance;
     }
 
-    // You should also update your LoadPerson method to handle the Id property.
-    // If you want to keep the constructor simpler:
-    /* public PersoneModel(string firstName, string secondName, double balance)
-        : this(null, firstName, secondName, balance) {}
-
-    public PersoneModel(int? id, string firstName, string secondName, double balance)
-    {
-        Id = id;
-        FirstName = firstName;
-        SecondName = secondName;
-        Balance = balance;
-    }
-    */
-
+    // Méthode pour retourner une représentation textuelle de l'objet
     override public string ToString()
     {
-        return $"{Id}# :{FirstName} {SecondName} : {Balance}";
+        return $"{Id}# :{FirstName} {SecondName} : {Balance:c2}";
     }
 }
