@@ -38,6 +38,16 @@ public static class LogscreenClass
         "╚════════════════════════════╝"
     };
 
+    //Modèle d'affichage pour l'écran de saisie de l'ID
+    private static string[] logscreenTempleID = new string[5]
+    {
+        "╔════════════════════════════╗",
+        "║ ID Utilisateur             ║",
+        "║                            ║",
+        "║         ------------------ ║",
+        "╚════════════════════════════╝"
+    };
+
     // Affiche l'écran de connexion centré dans la console
     public static void PrintLogscreenTempleCenter()
     {
@@ -76,6 +86,13 @@ public static class LogscreenClass
             startY++;
         }
     }
+    public static void SaisieLogscreenTemplePasswordCenter(out string password)
+    {
+        PrintLogscreenTemplePasswordCenter();
+        // Positionne le curseur pour la saisie du mot de passe
+        Console.SetCursorPosition(champDeSaisie[2].x, champDeSaisie[2].y);
+        password = Console.ReadLine() ?? "";
+    }
 
     // Permet la saisie du prénom et du nom dans les champs correspondants
     public static void SaisieLogscreenTempleCenter(out string firstName, out string secondName)
@@ -90,10 +107,26 @@ public static class LogscreenClass
     }
 
     // Permet la saisie du mot de passe dans le champ correspondant
-    public static void SaisieLogscreenTemplePasswordCenter(out string password)
+    
+    // permet de saisire l'ID pour la conexion de l'utilisateur
+    public static void SaisieLogscreenTempleIDCenter(out int id)
     {
-        // Positionne le curseur pour la saisie du mot de passe
+        // Calculer la position de départ pour centrer l'écran
+        int startX = (Console.WindowWidth - 30) / 2;
+        int startY = (Console.WindowHeight - 5) / 2;
+        // Met à jour la position du champ de saisie pour l'ID
+        champDeSaisie[2] = (startX + 10, startY + 2);
+        // Affiche chaque ligne du modèle d'écran pour l'ID
+        foreach (var item in logscreenTempleID)
+        {
+            Console.SetCursorPosition(startX, startY);
+            Console.WriteLine(item);
+            startY++;
+        }
+        // Positionne le curseur pour la saisie de l'ID
         Console.SetCursorPosition(champDeSaisie[2].x, champDeSaisie[2].y);
-        password = Console.ReadLine() ?? "";
+        int.TryParse(Console.ReadLine() ?? "0",out id);
+
+        
     }
 }

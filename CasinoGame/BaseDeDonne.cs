@@ -65,4 +65,16 @@ public class BaseDeDonne
                 Console.WriteLine("N'existe pas"); // Affiche un message si l'Id n'existe pas
         }
     }
+
+    // Méthode pour vérifier si une personne existe dans la table "personne" par son Id
+    public static bool PersonneExists(int id)
+    {
+        using IDbConnection cnn = new SQLiteConnection(LoadConnectionString());
+        {
+            // Requête SQL pour compter le nombre d'entrées avec l'Id spécifié
+            string sql = @" SELECT COUNT(1) FROM personne WHERE Id = @Id";
+            // Exécute la requête et retourne true si au moins une entrée existe
+            return cnn.ExecuteScalar<int>(sql, new { Id = id }) > 0;
+        }
+    }
 }

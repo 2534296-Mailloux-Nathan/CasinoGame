@@ -1,4 +1,6 @@
-﻿namespace CasinoGame;
+﻿using System.Data.SQLite;
+
+namespace CasinoGame;
 
 class Program
 {
@@ -16,20 +18,16 @@ class Program
                 Console.WriteLine(personeModel);
             }/*
             BaseDeDonne.DeletePersonne(int.Parse(Console.ReadLine()));*/
-            LogscreenClass.PrintLogscreenTempleCenter();
-            LogscreenClass.SaisieLogscreenTempleCenter(out string firstName, out string secondName);
-        Console.Clear();
-        LogscreenClass.PrintLogscreenTemplePasswordCenter();
+        int idUser = 0;
+        do
+        {
+            LogscreenClass.SaisieLogscreenTempleIDCenter(out int id);
+            idUser = id;
+        } while (!BaseDeDonne.PersonneExists(idUser));
         LogscreenClass.SaisieLogscreenTemplePasswordCenter(out string password);
 
 
 
-
-        BaseDeDonne.LoadPerson();
-        
-        
-        
-        
         Console.ReadKey();
         
     }
