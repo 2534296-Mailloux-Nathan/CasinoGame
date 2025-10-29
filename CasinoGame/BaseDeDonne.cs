@@ -77,4 +77,15 @@ public class BaseDeDonne
             return cnn.ExecuteScalar<int>(sql, new { Id = id }) > 0;
         }
     }
+    // Méthode pour vérifier si le mot de passe d'une personne est correct
+    public static bool PasswordIsCorrect(int id, string password)
+    {
+        using IDbConnection cnn = new SQLiteConnection(LoadConnectionString());
+        {
+            // Requête SQL pour compter le nombre d'entrées avec l'Id et le mot de passe spécifiés
+            string sql = @" SELECT COUNT(1) FROM personne WHERE Id = @Id AND Password = @Password";
+            // Exécute la requête et retourne true si au moins une entrée correspond
+            return cnn.ExecuteScalar<int>(sql, new { Id = id, Password = password }) > 0;
+        }
+    }
 }

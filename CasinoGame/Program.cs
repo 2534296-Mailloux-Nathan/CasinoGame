@@ -18,13 +18,7 @@ class Program
                 Console.WriteLine(personeModel);
             }/*
             BaseDeDonne.DeletePersonne(int.Parse(Console.ReadLine()));*/
-        int idUser = 0;
-        do
-        {
-            LogscreenClass.SaisieLogscreenTempleIDCenter(out int id);
-            idUser = id;
-        } while (!BaseDeDonne.PersonneExists(idUser));
-        LogscreenClass.SaisieLogscreenTemplePasswordCenter(out string password);
+       
 
 
 
